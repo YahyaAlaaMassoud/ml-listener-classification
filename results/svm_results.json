@@ -1,0 +1,86 @@
+{
+    "256_8": {
+        "test_retest": {
+            "linear": 0.775,
+            "poly": 0.725,
+            "rbf": 0.75
+        },
+        "retest_test": {
+            "linear": 0.675,
+            "poly": 0.625,
+            "rbf": 0.575
+        }
+    },
+    "256_64": {
+        "test_retest": {
+            "linear": 0.725,
+            "poly": 0.7,
+            "rbf": 0.7
+        },
+        "retest_test": {
+            "linear": 0.725,
+            "poly": 0.725,
+            "rbf": 0.7
+        }
+    },
+    "256_128": {
+        "test_retest": {
+            "linear": 0.75,
+            "poly": 0.7,
+            "rbf": 0.75
+        },
+        "retest_test": {
+            "linear": 0.775,
+            "poly": 0.775,
+            "rbf": 0.8
+        }
+    },
+    "256_250": {
+        "test_retest": {
+            "linear": 0.825,
+            "poly": 0.775,
+            "rbf": 0.85
+        },
+        "retest_test": {
+            "linear": 0.85,
+            "poly": 0.825,
+            "rbf": 0.85
+        }
+    },
+    "512_0": {
+        "test_retest": {
+            "linear": 0.675,
+            "poly": 0.65,
+            "rbf": 0.65
+        },
+        "retest_test": {
+            "linear": 0.75,
+            "poly": 0.7,
+            "rbf": 0.8
+        }
+    },
+    "512_256": {
+        "test_retest": {
+            "linear": 0.825,
+            "poly": 0.75,
+            "rbf": 0.825
+        },
+        "retest_test": {
+            "linear": 0.775,
+            "poly": 0.775,
+            "rbf": 0.825
+        }
+    },
+    "512_511": {
+        "test_retest": {
+            "linear": 0.875,
+            "poly": 0.85,
+            "rbf": 0.875
+        },
+        "retest_test": {
+            "linear": 0.9,
+            "poly": 0.8,
+            "rbf": 0.875
+        }
+    }
+}
