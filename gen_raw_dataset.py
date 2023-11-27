@@ -3,8 +3,18 @@ import os
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from PIL import Image
 from scipy import signal
 from scipy.fft import fft
+from scipy.ndimage import zoom
+
+
+def rescale_spectrogram(spectrogram, new_size=(64, 64)):
+    # Calculate the zoom factor for each dimension
+    zoom_factor = [n / o for n, o in zip(new_size, spectrogram.shape)]
+    # Use scipy's zoom function to resize the spectrogram
+    spectrogram_rescaled = zoom(spectrogram, zoom_factor)
+    return spectrogram_rescaled
 
 
 def concatenate_vowels(df):
@@ -97,6 +107,8 @@ def compute_spectogram(input_signal, window_size, overlap):
 
     # Convert the spectrogram to dB
     Sxx_dB = 10 * np.log10(Sxx)
+    
+    return frequencies, times, Sxx_dB
 
     # Find the index of the frequency that is just above 1300 Hz
     idx = np.where(frequencies <= 1300)[0][-1]
@@ -145,16 +157,24 @@ def save_subject_arrays(efr_data, dataset_name):
 
             for window_size, overlaps in spectogram_map.items():
                 for overlap in overlaps:
-                    spectogram = compute_spectogram(input_signal, window_size, overlap)
-                    spectogram_filename = f"{dataset_name}/{subject_id}_spectogram_{i}_{window_size}_{overlap}.npy"
+                    frequencies, times, Sxx_dB = compute_spectogram(input_signal, window_size, overlap)
+                    spectogram_filename = f"{dataset_name}/{subject_id}_spectogram_{i}_{window_size}_{overlap}.png"
                     # print(spectogram_filename)
-                    np.save(spectogram_filename, spectogram)
-                    plt.imsave(
-                        f"{dataset_name}/{subject_id}_spectogram_{i}_{window_size}_{overlap}.png",
-                        spectogram,
-                        cmap="gray",
-                        format="png",
-                    )
+                    # np.save(spectogram_filename, spectogram)
+                    fig, ax = plt.subplots(figsize=(10, 10))
+                    plt.pcolormesh(times, frequencies, Sxx_dB, shading='nearest')  # Using 'nearest' for a discrete look
+                    plt.ylim(0, 1300)
+                    plt.axis('off')
+
+                    # Remove padding and margins around the plot
+                    plt.margins(0, 0)
+                    ax.set_frame_on(False)
+
+                    # Adjust the layout
+                    plt.tight_layout(pad=0)
+
+                    # To save the figure without white space
+                    fig.savefig(spectogram_filename, bbox_inches='tight', pad_inches=0)
 
 
 df = pd.read_pickle("study2DataFrame.pkl")
