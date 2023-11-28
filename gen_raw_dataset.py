@@ -78,7 +78,7 @@ def preprocess_signal(input_signal, sampling_rate=9606):
 
 
 # Define a function to calculate the amplitude spectrum
-def calculate_amplitude_spectrum(s, sampling_rate):
+def calculate_amplitude_spectrum(s, sampling_rate, cutoff=-1):
     # Perform the Fourier Transform
     fft_result = fft(s)
 
@@ -94,7 +94,7 @@ def calculate_amplitude_spectrum(s, sampling_rate):
     # Create a frequency vector
     freq_vector = np.linspace(0, sampling_rate / 2, len(half_spectrum))
 
-    return freq_vector, half_spectrum
+    return freq_vector, half_spectrum[:cutoff]
 
 
 def compute_spectogram(input_signal, window_size, overlap):
@@ -152,7 +152,7 @@ def save_subject_arrays(efr_data, dataset_name):
             # print(ampspectra_filename)
             np.save(
                 ampspectra_filename,
-                calculate_amplitude_spectrum(input_signal, sampling_rate=9606),
+                calculate_amplitude_spectrum(input_signal, sampling_rate=9606, cutoff=1300)[1],
             )
 
             for window_size, overlaps in spectogram_map.items():
@@ -161,7 +161,14 @@ def save_subject_arrays(efr_data, dataset_name):
                     spectogram_filename = f"{dataset_name}/{subject_id}_spectogram_{i}_{window_size}_{overlap}.png"
                     # print(spectogram_filename)
                     # np.save(spectogram_filename, spectogram)
-                    fig, ax = plt.subplots(figsize=(10, 10))
+                    
+                    # Desired pixel size
+                    pixel_size = 32
+                    # Choose a DPI (could be any value, but higher DPI means higher resolution)
+                    dpi = 512
+                    # Calculate the figsize in inches
+                    figsize_inch = pixel_size / dpi
+                    fig, ax = plt.subplots(figsize=(figsize_inch, figsize_inch))
                     plt.pcolormesh(times, frequencies, Sxx_dB, shading='nearest')  # Using 'nearest' for a discrete look
                     plt.ylim(0, 1300)
                     plt.axis('off')
@@ -174,7 +181,7 @@ def save_subject_arrays(efr_data, dataset_name):
                     plt.tight_layout(pad=0)
 
                     # To save the figure without white space
-                    fig.savefig(spectogram_filename, bbox_inches='tight', pad_inches=0)
+                    fig.savefig(spectogram_filename, bbox_inches='tight', pad_inches=0, dpi=dpi)
 
 
 df = pd.read_pickle("study2DataFrame.pkl")
