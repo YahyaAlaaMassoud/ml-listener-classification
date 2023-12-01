@@ -66,7 +66,7 @@ def train_svm(train_set, test_set):
 
 
 NPY_DATA_DIR = "npy_datasets"
-RESULTS_DIR = "results"
+RESULTS_DIR = "svm_results"
 
 spectogram_map = {
     256: [8, 64, 128, 250],
