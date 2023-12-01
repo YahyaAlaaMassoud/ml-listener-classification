@@ -53,3 +53,6 @@ def normalize_min_max_v2(data, new_min, new_max):
     # Scale to new_min-new_max range
     scaled_data = normalized_data * (new_max - new_min) + new_min
     return scaled_data
+
+def standardize(data):
+    return (data - np.mean(data)) / np.std(data)
