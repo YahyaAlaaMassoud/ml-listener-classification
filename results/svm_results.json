@@ -1,74 +1,74 @@
 {
     "256_8": {
         "test_retest": {
-            "linear": 0.775,
-            "poly": 0.725,
+            "linear": 0.75,
+            "poly": 0.8,
             "rbf": 0.75
         },
         "retest_test": {
-            "linear": 0.675,
+            "linear": 0.65,
             "poly": 0.625,
-            "rbf": 0.575
+            "rbf": 0.625
         }
     },
     "256_64": {
         "test_retest": {
-            "linear": 0.725,
+            "linear": 0.775,
             "poly": 0.7,
-            "rbf": 0.7
+            "rbf": 0.675
         },
         "retest_test": {
-            "linear": 0.725,
+            "linear": 0.775,
             "poly": 0.725,
             "rbf": 0.7
         }
     },
     "256_128": {
         "test_retest": {
-            "linear": 0.75,
-            "poly": 0.7,
-            "rbf": 0.75
+            "linear": 0.725,
+            "poly": 0.675,
+            "rbf": 0.725
         },
         "retest_test": {
-            "linear": 0.775,
-            "poly": 0.775,
-            "rbf": 0.8
+            "linear": 0.725,
+            "poly": 0.725,
+            "rbf": 0.725
         }
     },
     "256_250": {
         "test_retest": {
             "linear": 0.825,
             "poly": 0.775,
-            "rbf": 0.85
+            "rbf": 0.825
         },
         "retest_test": {
             "linear": 0.85,
             "poly": 0.825,
-            "rbf": 0.85
+            "rbf": 0.8
         }
     },
     "512_0": {
         "test_retest": {
-            "linear": 0.675,
-            "poly": 0.65,
-            "rbf": 0.65
+            "linear": 0.75,
+            "poly": 0.725,
+            "rbf": 0.725
         },
         "retest_test": {
-            "linear": 0.75,
+            "linear": 0.725,
             "poly": 0.7,
-            "rbf": 0.8
+            "rbf": 0.675
         }
     },
     "512_256": {
         "test_retest": {
-            "linear": 0.825,
-            "poly": 0.75,
+            "linear": 0.85,
+            "poly": 0.825,
             "rbf": 0.825
         },
         "retest_test": {
-            "linear": 0.775,
-            "poly": 0.775,
-            "rbf": 0.825
+            "linear": 0.75,
+            "poly": 0.75,
+            "rbf": 0.75
         }
     },
     "512_511": {
@@ -78,8 +78,8 @@
             "rbf": 0.875
         },
         "retest_test": {
-            "linear": 0.9,
-            "poly": 0.8,
+            "linear": 0.85,
+            "poly": 0.775,
             "rbf": 0.875
         }
     }

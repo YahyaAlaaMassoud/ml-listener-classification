@@ -1,0 +1,12 @@
+{
+    "test_retest": {
+        "linear": 0.725,
+        "poly": 0.375,
+        "rbf": 0.775
+    },
+    "retest_test": {
+        "linear": 0.725,
+        "poly": 0.3,
+        "rbf": 0.725
+    }
+}
